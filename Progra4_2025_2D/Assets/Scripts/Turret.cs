@@ -22,7 +22,7 @@ public class Turret : MonoBehaviour
     }
     private void Awake()
     {
-        rotateAction = InputSystem.actions.FindAction("Look");
+        rotateAction = InputSystem.actions.FindAction("Rotate");
 
         rb2D = GetComponent<Rigidbody2D>();
     }

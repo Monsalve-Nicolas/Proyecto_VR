@@ -3850,8 +3850,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 534523404}
   m_HandleRect: {fileID: 534523403}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.8761374
+  m_Value: 1.0000011
+  m_Size: 0.9178852
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5288,7 +5288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   action: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  rotateSpd: 10
+  rotateSpd: 20
 --- !u!212 &7884391891963567770
 SpriteRenderer:
   m_ObjectHideFlags: 0
