@@ -3,13 +3,14 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     [SerializeField] InputActionAsset action;
+    private PlayerStats stats;
     private InputAction moveAction;
     private InputAction rotateAction;
 
     private Vector2 movePos;
     private Vector2 rotatePos;
 
-    private Rigidbody2D rb2D;
+    [SerializeField] Rigidbody2D rb2D;
 
     [SerializeField] float moveSpd, rotateSpd;
 
@@ -21,13 +22,22 @@ public class Movement : MonoBehaviour
     {
         action.FindActionMap("Player").Disable();
     }
+    //eventos para subcribirse
+    void Subcribirse()
+    {
+
+    }
+    void Desubcribirse()
+    {
+
+    }
 
     private void Awake()
     {
+        //le entregamos su componente
+        stats = GetComponent<PlayerStats>();
         moveAction = InputSystem.actions.FindAction("Move");
         //rotateAction = InputSystem.actions.FindAction("Look");
-
-        rb2D = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
@@ -53,5 +63,9 @@ public class Movement : MonoBehaviour
             //Quaternion deltaRotation = Quaternion.Euler(0, 0, rotationPos);
             transform.Rotate(0, 0, rotationPos);
         }
+    }
+    void UpdateStatsBase()
+    {
+        Debug.Log("Stats Actualizado: velocidad = " + stats.currentSpd);
     }
 }

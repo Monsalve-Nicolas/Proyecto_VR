@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerPieceModifierMain : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class PlayerPieceModifierMain : MonoBehaviour
     [SerializeField] PanelPieceSelection panelPieceSelection;
     [SerializeField] PanelPartTypeSelection panelPieceTypeSelection;
     [SerializeField] TankSpriteModifier tankSpriteModifier;
+    [SerializeField] ColorPicker colorPicker;
     
     [Header("Pieces Info")]
     [SerializeField] List<TankPieceScriptable> tpiece_GunConnector;
@@ -15,15 +17,30 @@ public class PlayerPieceModifierMain : MonoBehaviour
     [SerializeField] List<TankPieceScriptable> tpiece_Towers;
     [SerializeField] List<TankPieceScriptable> tpiece_Tracks;
     [SerializeField] List<TankPieceScriptable> tpiece_Projectiles;
-
+    public UnityEvent<TankPieceScriptable> OnTankPieceChangeEvent;
     private void Start()
     {
         panelPieceTypeSelection.OnButtonSelectPartType(TankPieceType.Hull);
     }
 
+    public void OnChangeColor(Color color)
+    {
+        tankSpriteModifier.ChangeLightColor(color);
+    }
+
     public void OnPieceTypeSelected(TankPieceType pieceType)
     {
-        panelPieceSelection.SetPanelSelection(GetPiecesByType(pieceType));
+        if (pieceType == TankPieceType.Light)
+        {
+            panelPieceSelection.EnablePanel(false);
+            colorPicker.EnablePanel(true);
+        }
+        else
+        {
+            panelPieceSelection.EnablePanel(true);
+            colorPicker.EnablePanel(false);
+            panelPieceSelection.SetPanelSelection(GetPiecesByType(pieceType));
+        }
     }
 
     public void OnPieceSelected(TankPieceType pieceType, string id)
@@ -35,6 +52,7 @@ public class PlayerPieceModifierMain : MonoBehaviour
     {
         panelPieceTypeSelection.SetButtonSelectPartType(tankPiece.pieceType, tankPiece.pieceSprite);
         tankSpriteModifier.ChangeSprite(tankPiece.pieceType, tankPiece.pieceSprite);
+        OnTankPieceChangeEvent?.Invoke(tankPiece);
     }
 
     private List<TankPieceScriptable> GetPiecesByType(TankPieceType pieceType)
