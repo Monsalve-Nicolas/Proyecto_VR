@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +8,7 @@ public class Player : MonoBehaviour
     public List<StatInfo> currentStats = new List<StatInfo>();
     [Header("Current Piece")]
     public TankPieceScriptable[] piecesArr = new TankPieceScriptable[7];
+    StatType[] statTypesArr = new StatType[6];
     public Color piece_LightColor;
 
     private void Start()
@@ -51,5 +51,32 @@ public class Player : MonoBehaviour
 
         }
         currentStats = statsInfo;
+    }
+    public void UpdateControllers()
+    {
+        foreach (var stats in currentStats)
+        {
+            switch (stats.type)
+            {
+                case StatType.Spd:
+                    movement.moveSpd += stats.value;
+                    break;
+                case StatType.RootSpd:
+                    movement.rotateSpd += stats.value;
+                    turret.rotateSpd += stats.value;
+                    break;
+                case StatType.Attack:
+                    break;
+                case StatType.Defense:
+                    break;
+                case StatType.Life:
+                    break;
+                case StatType.BulletSpd:
+                    break;
+                default:
+                    break;
+            }
+        }
+
     }
 }

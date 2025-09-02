@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour
 
     [SerializeField] Rigidbody2D rb2D;
 
-    [SerializeField] float moveSpd, rotateSpd;
+    [SerializeField] public float moveSpd, rotateSpd;
 
     private void OnEnable()
     {
@@ -22,16 +22,6 @@ public class Movement : MonoBehaviour
     {
         action.FindActionMap("Player").Disable();
     }
-    //eventos para subcribirse
-    void Subcribirse()
-    {
-
-    }
-    void Desubcribirse()
-    {
-
-    }
-
     private void Awake()
     {
         //le entregamos su componente
@@ -49,7 +39,7 @@ public class Movement : MonoBehaviour
         MoveRB2D();
         RotateMove();
     }
-    void MoveRB2D()
+    public void MoveRB2D()
     {
         rb2D.MovePosition(rb2D.position + (Vector2)transform.up * movePos.y * moveSpd * Time.deltaTime);
 

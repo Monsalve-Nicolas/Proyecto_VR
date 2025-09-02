@@ -10,7 +10,7 @@ public class Turret : MonoBehaviour
 
     private Rigidbody2D rb2D;
 
-    [SerializeField] float rotateSpd;
+    [SerializeField] public float rotateSpd;
 
     private void OnEnable()
     {
