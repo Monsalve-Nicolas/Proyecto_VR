@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     public TankPieceScriptable[] piecesArr = new TankPieceScriptable[7];
     StatType[] statTypesArr = new StatType[6];
     public Color piece_LightColor;
+    public string playerName;
+    public int currentDmg;
+    public int score;
 
     private void Start()
     {
@@ -78,5 +81,24 @@ public class Player : MonoBehaviour
             }
         }
 
+    }
+    void LoadData()
+    {
+        LoadSaveSystem loadSave = new LoadSaveSystem();
+        PlayerDataInfo playerData = loadSave.LoadPlayerInfo();
+    }
+    void SaveData()
+    {
+        PlayerDataInfo playerData = new PlayerDataInfo();
+        playerData.piecesNames = new List<string>();
+        playerData.playerName = playerName;
+        playerData.currentDmg = currentDmg;
+        playerData.score = score;
+        foreach (var piece in piecesArr)
+        {
+            playerData.piecesNames.Add(piece.id);
+        }
+        LoadSaveSystem loadSave = new LoadSaveSystem();
+        loadSave.SavePlayerInfo(playerData);
     }
 }
