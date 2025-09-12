@@ -119,6 +119,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &3704227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3704228}
+  m_Layer: 0
+  m_Name: Spawn Bullet
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3704228
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3704227}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.598, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2510930464084894057}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &12476044 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2683821116086573620, guid: 24a368880fbe9e2468ca280255acb23a, type: 3}
@@ -1700,8 +1731,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 597260362}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.88226557}
+  m_AnchorMin: {x: 0, y: 0.0598019}
+  m_AnchorMax: {x: 1, y: 0.8822656}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3071,6 +3102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 6419668348947913032}
   turret: {fileID: 7343441447267089025}
+  spriteModifier: {fileID: 6419668348947913030}
+  attackTurret: {fileID: 7343441447267089026}
   currentStats: []
   piecesArr:
   - {fileID: 0}
@@ -3080,7 +3113,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: acdf0ed0da20c4d4c9a321cc412cfbbb, type: 2}
   - {fileID: 11400000, guid: 5485e71fb8774654590470ba9b0c7d01, type: 2}
   - {fileID: 11400000, guid: 0de3442bb3d75ee44aada71819d12685, type: 2}
-  piece_LightColor: {r: 0, g: 0, b: 0, a: 0}
+  piece_LightColor: {r: 0.7921569, g: 0.054901946, b: 0.7227995, a: 0}
+  playerName: Monsa
+  currentDmg: 50
+  score: 50
 --- !u!4 &1301291873
 Transform:
   m_ObjectHideFlags: 0
@@ -4216,8 +4252,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 534523404}
   m_HandleRect: {fileID: 534523403}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.88226557
+  m_Value: 0.3368433
+  m_Size: 0.82246375
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4815,6 +4851,7 @@ GameObject:
   - component: {fileID: 6703192629129738470}
   - component: {fileID: 7343441447267089024}
   - component: {fileID: 7343441447267089025}
+  - component: {fileID: 7343441447267089026}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -4963,7 +5000,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3704228}
   m_Father: {fileID: 6703192629129738470}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2821622087127955078
@@ -5628,6 +5666,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   action: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   rotateSpd: 20
+--- !u!114 &7343441447267089026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178670475065550242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a728de09b52f9478ddf4f1007ef9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionAsset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  attackForce: 20
+  bulletPrefba: {fileID: 6597307812426419244, guid: ce92ff16ff67a59418d1f06651c03829, type: 3}
+  spawnBullet: {fileID: 3704228}
 --- !u!212 &7884391891963567770
 SpriteRenderer:
   m_ObjectHideFlags: 0
